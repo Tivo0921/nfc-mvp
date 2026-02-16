@@ -6,7 +6,7 @@ const PORT = process.env.PORT || 3000;
 
 // public配下を静的配信
 app.use(express.static(path.join(__dirname,
-"public")));
+  "public")));
 
 // /c/syun001 のように末尾スラッシュ無しでも index.html を返す保険
 app.get("/c/:id", (req, res) => {
@@ -20,4 +20,8 @@ app.get("/c/:id", (req, res) => {
 app.get("/health", (_req, res) => res.status(200).send("ok"));
 
 app.listen(PORT, () => console.log(`listening on ${PORT
-}`));
+  }`));
+
+app.get("/", (_req, res) => {
+  res.redirect("/c/syun001");
+});
